@@ -50,6 +50,8 @@ void Game::Run(Controller const &controller, Renderer &renderer,
   }
 }
 
+void Game::UpdateStartSpeed() { snake.SetStartingSpeed(); }
+
 void Game::PlaceFood() {
   int x, y;
   while (true) {

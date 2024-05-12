@@ -2,7 +2,33 @@
 #include <cmath>
 #include <iostream>
 
-void Snake::Update() {
+void Snake::SetStartingSpeed()
+{
+  float userSpeed;
+  char lRrange[100];
+  sprintf(lRrange, "%0.1f and %0.1f", minStartSpeed, maxStartSpeed);
+  std::string rangeStr(lRrange);
+
+  std::cout << "Enter speed of the snake?" << std::endl;
+  std::cout << "Select a number between " << rangeStr << std::endl;
+
+  while (true)
+  {
+    int isNumb = scanf("%f", &userSpeed);
+    if (isNumb)
+    {
+      if (userSpeed >= minStartSpeed && userSpeed <= maxStartSpeed)
+      {
+        speed = userSpeed;
+        return;
+      }
+    }
+    std::cerr << "\n Please provide a valid decimal between " << rangeStr << std::endl;
+  };
+}
+
+void Snake::Update()
+{
   SDL_Point prev_cell{
       static_cast<int>(head_x),
       static_cast<int>(
