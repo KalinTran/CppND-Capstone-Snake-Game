@@ -4,9 +4,16 @@
 #include <vector>
 #include "SDL.h"
 
-class Snake {
- public:
-  enum class Direction { kUp, kDown, kLeft, kRight };
+class Snake
+{
+public:
+  enum class Direction
+  {
+    kUp,
+    kDown,
+    kLeft,
+    kRight
+  };
 
   Snake(int grid_width, int grid_height)
       : grid_width(grid_width),
@@ -16,6 +23,7 @@ class Snake {
 
   void Update();
 
+  void SetStartingSpeed();
   void GrowBody();
   bool SnakeCell(int x, int y);
 
@@ -35,6 +43,8 @@ class Snake {
   bool growing{false};
   int grid_width;
   int grid_height;
+  float minStartSpeed{0.1};
+  float maxStartSpeed{0.6};
 };
 
 #endif

@@ -14,6 +14,7 @@ class Game {
            std::size_t target_frame_duration);
   int GetScore() const;
   int GetSize() const;
+  void UpdateStartSpeed();
 
  private:
   Snake snake;
@@ -25,7 +26,7 @@ class Game {
   std::uniform_int_distribution<int> random_h;
 
   int score{0};
-
+  bool _running{true};
   void PlaceFood();
   void Update();
 };
