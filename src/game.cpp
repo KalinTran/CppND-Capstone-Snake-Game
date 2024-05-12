@@ -67,6 +67,10 @@ void Game::PlaceFood() {
 }
 
 void Game::Update() {
+  if (IsPaused())
+  {
+      return;
+  }
   if (!snake.alive) 
   {
     _running = false;
