@@ -2,6 +2,7 @@
 #include "controller.h"
 #include "game.h"
 #include "renderer.h"
+
 #include "plaformgame.h"
 
 int main() {
@@ -11,7 +12,7 @@ int main() {
   constexpr std::size_t kScreenHeight{640};
   constexpr std::size_t kGridWidth{32};
   constexpr std::size_t kGridHeight{32};
-
+ 
   PlatformGame lStats;
   lStats.printPlform();
 
