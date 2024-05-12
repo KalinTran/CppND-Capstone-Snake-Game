@@ -1,9 +1,9 @@
 #include <iostream>
-#include "controller.h"
-#include "game.h"
 #include "renderer.h"
 
 #include "plaformgame.h"
+#include "controller.h"
+#include "game.h"
 
 int main() {
   constexpr std::size_t kFramesPerSecond{60};

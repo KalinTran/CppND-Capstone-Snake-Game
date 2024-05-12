@@ -2,7 +2,7 @@
 #include <iostream>
 #include "SDL.h"
 #include "snake.h"
-
+#include "game.h"
 void Controller::ChangeDirection(Snake &snake, Snake::Direction input,
                                  Snake::Direction opposite) const {
   if (snake.direction != opposite || snake.size == 1) snake.direction = input;
@@ -13,7 +13,7 @@ bool Controller::IsDirectionKeyPressed(SDL_Keycode key) const
 {
     return key == SDLK_UP || key == SDLK_DOWN || key == SDLK_LEFT || key == SDLK_RIGHT;
 }
-void Controller::HandleInput(bool &running, Snake &snake) const {
+void Controller::HandleInput(bool &running, Snake &snake, Game &game) const {
   SDL_Event e;
   while (SDL_PollEvent(&e))
   {
@@ -41,9 +41,12 @@ void Controller::HandleInput(bool &running, Snake &snake) const {
             ChangeDirection(snake, Snake::Direction::kRight,
                             Snake::Direction::kLeft);
             break;
-              case SDLK_q: //Q to quit
-                  running = false;
-                  break;
+	        case SDLK_ESCAPE: // ESC key to  pause the game
+	            game.IsPaused() ? game.Resume() : game.Pause();
+	            break;
+	      case SDLK_q: //Q to quit
+	          running = false;
+	          break;
       }
     }
   }

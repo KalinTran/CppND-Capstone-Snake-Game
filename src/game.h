@@ -8,15 +8,18 @@
 #include "snake.h"
 
 class Game {
- public:
+public:
   Game(std::size_t grid_width, std::size_t grid_height);
   void Run(Controller const &controller, Renderer &renderer,
            std::size_t target_frame_duration);
   int GetScore() const;
   int GetSize() const;
   void UpdateStartSpeed();
+  bool IsPaused() const ;
+  void Pause() ;
+  void Resume() ;
 
- private:
+private:
   Snake snake;
   SDL_Point food;
 
@@ -27,6 +30,7 @@ class Game {
 
   int score{0};
   bool _running{true};
+  bool _paused{false};
   void PlaceFood();
   void Update();
 };
