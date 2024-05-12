@@ -13,6 +13,7 @@ bool Controller::IsDirectionKeyPressed(SDL_Keycode key) const
 {
     return key == SDLK_UP || key == SDLK_DOWN || key == SDLK_LEFT || key == SDLK_RIGHT;
 }
+
 void Controller::HandleInput(bool &running, Snake &snake, Game &game) const {
   SDL_Event e;
   while (SDL_PollEvent(&e))

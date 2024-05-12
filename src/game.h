@@ -1,7 +1,9 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <memory>
 #include <random>
+
 #include "SDL.h"
 #include "controller.h"
 #include "renderer.h"
@@ -20,7 +22,7 @@ public:
   void Resume() ;
 
 private:
-  Snake snake;
+  std::shared_ptr<Snake> snake;
   SDL_Point food;
 
   std::random_device dev;
