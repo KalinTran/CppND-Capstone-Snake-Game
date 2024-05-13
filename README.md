@@ -71,9 +71,7 @@ method HandleInput() in controller.h:10, use pass by ref and Run() in game.h:15
 snake` is a `shared_ptr` in `game.h:25`
 
 ### 4.1
-### `Concurrency - A condition variable is used in the project.`
-Condition variable on_var variable define and use and main.cpp:12, main.cpp:18
 ### `Concurrency - The project uses multithreading.`
-Created thread in main.cpp:36 (time_end_print thread)
+Created thread in food.cpp:9 (time_end_print thread)
 ### `Concurrency - A mutex or lock is used in the project.`
-std::unique_lock use in main.cpp:17 
+mutex use in food.cpp:24 

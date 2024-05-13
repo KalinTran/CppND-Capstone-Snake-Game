@@ -14,7 +14,7 @@ class Food : public SDL_Point {
 public:
     Food();
     void setGameRunning(bool running);
-    FoodPhase getCurrentPhase();
+    FoodPhase getCurPhase();
 private:
     FoodPhase _curPhase;
     bool _isGameRunning;

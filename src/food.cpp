@@ -29,7 +29,7 @@ void Food::cyclePhases()
         }
     }
 }
-FoodPhase Food::getCurrentPhase() 
+FoodPhase Food::getCurPhase() 
 {
     std::lock_guard<std::mutex> uLock(_mtx);
     return _curPhase;
