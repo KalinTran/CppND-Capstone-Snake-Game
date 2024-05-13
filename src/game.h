@@ -23,7 +23,7 @@ public:
 
 private:
   std::shared_ptr<Snake> snake;
-  SDL_Point food;
+  Food food;
 
   std::random_device dev;
   std::mt19937 engine;
