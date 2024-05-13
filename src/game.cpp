@@ -1,8 +1,6 @@
 #include "game.h"
 #include <iostream>
 #include "SDL.h"
-#include <thread>
-#include <future>
 
 Game::Game(std::size_t grid_width, std::size_t grid_height)
     : snake(new Snake(grid_width, grid_height)),
@@ -26,10 +24,6 @@ void Game::Run(Controller const &controller, Renderer &renderer,
     // Input, Update, Render - the main game loop.
     controller.HandleInput(_running, *snake, *this);
     Update();
-    if (foodstore->HasFood())
-    {
-        food = foodstore->perchures();
-    }
     renderer.Render(*snake, food);
 
     frame_end = SDL_GetTicks();
@@ -55,31 +49,21 @@ void Game::Run(Controller const &controller, Renderer &renderer,
   }
 }
 
-SDL_Point Game::NewFood()
-{
-    int x, y;
-    while (true) {
-        x = random_w(engine);
-        y = random_h(engine);
-        // Check that the location is not occupied by a snake item before placing
-        // food.
-        if (!snake->SnakeCell(x, y)) {
-            break;
-        }
-   }
-    SDL_Point food{x, y};
-    return food;
-}
-
 void Game::UpdateStartSpeed() { snake->SetStartingSpeed(); }
 
 void Game::PlaceFood() {
-  SDL_Point food = NewFood();
-  std::future<void> ftr = std::async(std::launch::async,
-                                      &Foodstore<SDL_Point>::reload,
-                                      foodstore,
-                                      std::move(food));
-  ftr.wait();
+  int x, y;
+  while (true) {
+    x = random_w(engine);
+    y = random_h(engine);
+    // Check that the location is not occupied by a snake item before placing
+    // food.
+    if (!snake->SnakeCell(x, y)) {
+      food.x = x;
+      food.y = y;
+      return;
+    }
+  }
 }
 
 void Game::Update() {
