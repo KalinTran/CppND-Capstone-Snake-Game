@@ -1,7 +1,6 @@
 #include "game.h"
 #include <iostream>
 #include "SDL.h"
-#include <thread>
 
 Game::Game(std::size_t grid_width, std::size_t grid_height)
     : snake(new Snake(grid_width, grid_height)),
@@ -25,7 +24,7 @@ void Game::Run(Controller const &controller, Renderer &renderer,
     // Input, Update, Render - the main game loop.
     controller.HandleInput(_running, *snake, *this);
     Update();
-    renderer.Render(*snake, food, bonusfood, numbNormalEat / 3);
+    renderer.Render(*snake, food);
 
     frame_end = SDL_GetTicks();
 
@@ -59,24 +58,11 @@ void Game::PlaceFood() {
     y = random_h(engine);
     // Check that the location is not occupied by a snake item before placing
     // food.
-    if (!snake->SnakeCell(x, y) ||  (x!=bonusfood.x && y!=bonusfood.y )) {
+    if (!snake->SnakeCell(x, y)) {
       food.x = x;
       food.y = y;
       return;
     }
-  }
-}
-
-void Game::PlaceBonusFood() {
-  int x, y;
-  x = random_w(engine);
-  y = random_h(engine);
-  // Check that the location is not occupied by a snake item before placing , and != food
-  // food.
-  if (!snake->SnakeCell(x, y) ||  (x!=food.x && y!=food.y )) {
-    bonusfood.x = x;
-    bonusfood.y = y;
-    return;
   }
 }
 
@@ -98,21 +84,10 @@ void Game::Update() {
   // Check if there's food over here
   if (food.x == new_x && food.y == new_y) {
     score++;
-    numbNormalEat++;
     PlaceFood();
     // Grow snake and increase speed.
     snake->GrowBody();
     snake->speed += 0.02;
-    if(numbNormalEat / 3 == 0)
-    {
-      // std::thread t(Game::PlaceBonusFood);
-      PlaceBonusFood();
-    }
-  }
-  else if (bonusfood.x == new_x && bonusfood.y == new_y) {
-    score+=2;
-    // Grow snake
-    snake->GrowBody();
   }
 }
 

@@ -24,19 +24,16 @@ public:
 private:
   std::shared_ptr<Snake> snake;
   SDL_Point food;
-  SDL_Point bonusfood;
-  std::mt19937 engine;
-  std::random_device dev;
 
+  std::random_device dev;
+  std::mt19937 engine;
   std::uniform_int_distribution<int> random_w;
   std::uniform_int_distribution<int> random_h;
 
   int score{0};
-  int numbNormalEat{0};
   bool _running{true};
   bool _paused{false};
   void PlaceFood();
-  void PlaceBonusFood();
   void Update();
 };
 
