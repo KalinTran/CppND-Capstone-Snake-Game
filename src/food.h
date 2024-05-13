@@ -13,7 +13,6 @@ enum FoodPhase {
 class Food : public SDL_Point {
 public:
     Food();
-    ~Food();
     void setGameRunning(bool running);
     FoodPhase getCurrentPhase();
 private:
