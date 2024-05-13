@@ -1,5 +1,5 @@
-#ifndef FOOD_H
-#define FOOD_H
+#ifndef FOOD_H_
+#define FOOD_H_
 
 #include "SDL.h"
 #include <thread>
@@ -14,18 +14,15 @@ class Food : public SDL_Point {
 public:
     Food();
     ~Food();
-
-    FoodPhase getCurrentPhase();
     void setGameRunning(bool running);
-
-protected:
-    std::thread t;
-
+    FoodPhase getCurrentPhase();
 private:
     FoodPhase _currentPhase;
     bool _isGameRunning;
-    void cycleThroughPhases();
+    void cyclePhases();
     std::mutex _mutex;
+protected:
+    std::thread t;
 };
 
 #endif
