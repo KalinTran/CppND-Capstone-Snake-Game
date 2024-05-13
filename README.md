@@ -32,36 +32,48 @@ In this project, you can build your own C++ application or extend this Snake gam
 
 # Rubric Items Matched
 ## New Features
-* Display score and snake size when game is over
+* Display score and snake size, time play, when game is over
 * Press `Q` to quit the game
 * Press `ESC` to Pause/Resume the game
 * Can set snake starting speed
-### 1
-### `Object Oriented Programming - One or more classes are added to the project with appropriate access specifiers for class members.`
-To meet this requirement, a `PlatformGame` class was created (inside `platformgame.h`) to hold information about the system platform. The class uses the member functions `getPlform` and `printPlform` to get and print detect platform.
 
-### 2
-### `Object Oriented Programming - Class constructors utilize member initialization lists.`
-> All class members that are set to argument values are initialized through member initialization lists.
-`platformgame.h` (line 11)  the default argument for the private variable `platformisUsed(line 17)` is a null string which is set within the class's initiaziation list.
-
-### 3
-### `Object Oriented Programming - Classes abstract implementation details from their interfaces.`
-> All class member functions document their effects, either through function names, comments, or formal documentation. Member functions do not change program state in undocumented ways.
-The [C++ Guide by Google](https://google.github.io/styleguide/cppguide.html#Function_Comments) was used to for any needed documentation. An example can be found within `metagame.h` (line 16) above the function declaration of `getPlatform` where a simple comment is used to describe what the function does. Also, a function comment can be found in `snake.h` line 25.
-
-### 4
+### 1.1
 ### `Loops, Functions, I/O - The project accepts user input and processes the input.`
 > The project accepts input from a user as part of the necessary operation of the program.
 The user has the option to select the starting speed of the snake. A Game class member function `UpdateStartSpeed` 
 
-### 5 `Loops, Functions, I/O - The project demonstrates an understanding of C++ functions and control structures`
+### 1.2 `Loops, Functions, I/O - The project demonstrates an understanding of C++ functions and control structures`
 whole project organized with proper use of functions and flow of data.
 
-### 6
+
+### 2.1
+### `Object Oriented Programming - One or more classes are added to the project with appropriate access specifiers for class members.`
+To meet this requirement, a `PlatformGame` class was created (inside `platformgame.h`) to hold information about the system platform. The class uses the member functions `getPlform` and `printPlform` to get and print detect platform.
+
+### 2.2
+### `Object Oriented Programming - Class constructors utilize member initialization lists.`
+> All class members that are set to argument values are initialized through member initialization lists.
+`platformgame.h` (line 11)  the default argument for the private variable `platformisUsed(line 17)` is a null string which is set within the class's initiaziation list.
+
+### 2.3
+### `Object Oriented Programming - Classes abstract implementation details from their interfaces.`
+> All class member functions document their effects, either through function names, comments, or formal documentation. Member functions do not change program state in undocumented ways.
+The [C++ Guide by Google](https://google.github.io/styleguide/cppguide.html#Function_Comments) was used to for any needed documentation. An example can be found within `metagame.h` (line 16) above the function declaration of `getPlatform` where a simple comment is used to describe what the function does. Also, a function comment can be found in `snake.h` line 25.
+
+### 3.1
 ### ` Memory Management - The project makes use of references in function declarations`
 method HandleInput() in controller.h:10, use pass by ref and Run() in game.h:15
+### 3.2
 ### `Memory Management - The project uses destructors appropriately. `
 ~Renderer() in renderer.h:12
+### 3.3
 ### `The project uses smart pointers instead of raw pointers. `
 snake` is a `shared_ptr` in `game.h:25`
+
+### 4.1
+### `Concurrency - A condition variable is used in the project.`
+Condition variable on_var variable define and use and main.cpp:12, main.cpp:18
+### `Concurrency - The project uses multithreading.`
+Created thread in main.cpp:36 (time_end_print thread)
+### `Concurrency - A mutex or lock is used in the project.`
+std::unique_lock use in main.cpp:17 
